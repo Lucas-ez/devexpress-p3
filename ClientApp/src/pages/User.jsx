@@ -2,15 +2,11 @@ import React, { useEffect } from 'react'
 import { DataGrid } from 'devextreme-react'
 import DataSource from 'devextreme/data/data_source'
 import CustomStore from 'devextreme/data/custom_store'
-import { Editing, FilterRow } from 'devextreme-react/data-grid'
+import { Column, Editing, FilterRow } from 'devextreme-react/data-grid'
 import { Paging } from 'devextreme-react/data-grid'
 
 
 const User = () => {
-
-  useEffect(() => {
-
-  }, [])
 
   return (
     <div>
@@ -24,15 +20,21 @@ const User = () => {
         <Editing 
           mode='row'
           allowAdding={true}
-          allowUpdating={true}
           allowDeleting={true}
         />
+        <Column dataField='userId' caption='ID' width={50} allowEditing={false}/>
+        <Column dataField='firstName'/>
+        <Column dataField='lastName'/>
+        <Column dataField='email'/>
+        <Column dataField='birthDate' dataType='datetime' format={dateFormat}/>
         {/* <FilterRow visible={true}/> */}
         <Paging defaultPageSize={6}/>
       </DataGrid>
     </div>
   )
 }
+
+const dateFormat = { year: '2-digit', month: 'short', day: '2-digit' };
 
 const dataSource = new CustomStore({
   key: 'userId',
@@ -78,19 +80,6 @@ const dataSource = new CustomStore({
               'Content-Type': 'application/json'
           },
           body: JSON.stringify(values)
-      });
-  } catch (error) {
-      console.error('Error:', error);
-  }
-  },
-  update: async (key, value) => {
-    try {
-      const response = await fetch(`/user/${key}`, {
-          method: 'PUT',
-          headers: {
-              'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(value)
       });
     } catch (error) {
         console.error('Error:', error);

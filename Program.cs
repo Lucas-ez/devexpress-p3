@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddDbContext<UserDbContext>(options => options.UseSqlServer("server=localhost\\SQLEXPRESS01; database=UserDB; Integrated Security=True; MultipleActiveResultSets=true; TrustServerCertificate=True;"));
+builder.Services.AddDbContext<UserDbContext>(options => options.UseSqlServer("server=localhost\\MSSQLSERVER01; database=UserDB; Integrated Security=True; MultipleActiveResultSets=true; TrustServerCertificate=True;"));
 
 
 var app = builder.Build();

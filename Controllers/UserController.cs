@@ -52,28 +52,72 @@ namespace Pruebas.Controllers
             return Created("User", user);
         }
 
-        [HttpPut("{key:int}")]
-        public IActionResult Put(int key, [FromBody] JsonPatchDocument<User> patch)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+        //[HttpPatch("{key:int}")]
+        //public IActionResult Patch(int key, [FromBody] JsonPatchDocument<User> patchDocument)
+        //{
+        //    if (patchDocument == null)
+        //    {
+        //        return BadRequest();
+        //    }
 
-            var userToUpdate = _context.Users.Find(key);
+        //    var userToUpdate = _context.Users.Find(key);
 
-            if (userToUpdate == null)
-            {
-                return NotFound();
-            }
+        //    if (userToUpdate == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            patch.ApplyTo(userToUpdate);
+        //    patchDocument.ApplyTo(userToUpdate);
 
-            _context.Update(userToUpdate);
-            _context.SaveChanges();
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
 
-            return NoContent();
-        }
+        //    _context.SaveChanges();
 
+        //    return NoContent();
+        //}
+
+        //[HttpPut("{key:int}")]
+        //public IActionResult Put(int key, [FromBody] JsonPatchDocument<User> patch)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
+
+
+        //    _context.Update(patch);
+        //    _context.SaveChanges();
+
+        //    return NoContent();
+        //}
+
+        //[HttpPatch("{key:int}")]
+        //public IActionResult Put(int key, [FromBody] JsonPatchDocument<User> patch)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
+
+        //    var userToUpdate = _context.Users.Find(key);
+
+        //    if (userToUpdate == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    Console.WriteLine(userToUpdate.FirstName);
+        //    Console.WriteLine(patch);
+        //    patch.ApplyTo(userToUpdate);
+        //    Console.WriteLine(userToUpdate.FirstName);
+
+        //    _context.Users.Update(userToUpdate);
+        //    _context.SaveChanges();
+
+        //    return NoContent();
+        //}
     }
 }
